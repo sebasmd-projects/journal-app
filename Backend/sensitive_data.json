@@ -1,0 +1,55 @@
+{
+    "FILE_NAME": "sensitive_data.json",
+    "ENVIRONMENT": "local",
+    "BASE_URL": {
+        "dev": [
+            "https://dev.example.com"
+        ],
+        "local": [
+            "http://localhost:8000"
+        ],
+        "production": [
+            "https://example.com"
+        ]
+    },
+    "SECRET_KEY": "django-journal-app-your-secret-key",
+    "LANGUAGE_CODE": "es-co",
+    "TIME_ZONE": "America/Bogota",
+    "ALLOWED_HOSTS": {
+        "dev": [
+            "dev.example.com"
+        ],
+        "local": [
+            "localhost"
+        ],
+        "production": [
+            "example.com"
+        ]
+    },
+    "CORS_ALLOWED_ORIGINS": {
+        "dev": [
+            "https://*.example.com"
+        ],
+        "local": [
+            "http://localhost:3000"
+        ],
+        "production": [
+            "https://example.com"
+        ]
+    },
+    "DB_CONN_MAX_AGE": 5,
+    "ENGINE": "django.db.backends.postgresql_psycopg2",
+    "NAME": "journal_app_db",
+    "USER": "journal_app_user",
+    "PASSWORD": "journal_app_password",
+    "HOST": "localhost",
+    "PORT": "5432",
+    "EMAIL_USE_SSL": "True",
+    "EMAIL_USE_TLS": "False",
+    "EMAIL_BACKEND" : "django_smtp_ssl.SSLEmailBackend",
+    "EMAIL_HOST" : "mail.example.com",
+    "EMAIL_PORT" : 465,
+    "EMAIL_HOST_USER" : "info@example.com",
+    "EMAIL_HOST_PASSWORD" : "example.com_password",
+    "DEFAULT_FROM_EMAIL" : "EMAIL_HOST_USER"
+}
