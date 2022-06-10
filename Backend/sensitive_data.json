@@ -3,13 +3,13 @@
     "ENVIRONMENT": "local",
     "BASE_URL": {
         "dev": [
-            "https://dev.example.com"
+            "https://dev.sebasmd.com"
         ],
         "local": [
             "http://localhost:8000"
         ],
         "production": [
-            "https://example.com"
+            "https://sebasmd.com"
         ]
     },
     "SECRET_KEY": "django-journal-app-your-secret-key",
@@ -17,24 +17,24 @@
     "TIME_ZONE": "America/Bogota",
     "ALLOWED_HOSTS": {
         "dev": [
-            "dev.example.com"
+            "dev.sebasmd.com"
         ],
         "local": [
             "localhost"
         ],
         "production": [
-            "example.com"
+            "sebasmd.com"
         ]
     },
     "CORS_ALLOWED_ORIGINS": {
         "dev": [
-            "https://*.example.com"
+            "https://*.sebasmd.com"
         ],
         "local": [
             "http://localhost:3000"
         ],
         "production": [
-            "https://example.com"
+            "https://sebasmd.com"
         ]
     },
     "DB_CONN_MAX_AGE": 5,

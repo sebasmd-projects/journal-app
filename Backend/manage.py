@@ -18,15 +18,15 @@ def main():
     
     if get_value("ENVIRONMENT") == "dev":
         os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                              'app_core_journal.settings.dev')
+                              'app_core_journal.settings.settings_dev')
 
     elif get_value("ENVIRONMENT") == "local":
         os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                              'app_core_journal.settings.local')
+                              'app_core_journal.settings.settings_local')
 
     elif get_value("ENVIRONMENT") == "production":
         os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                              'app_core_journal.settings.production')
+                              'app_core_journal.settings.settings_production')
     
     try:
         from django.core.management import execute_from_command_line
