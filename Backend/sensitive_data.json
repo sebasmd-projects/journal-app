@@ -20,7 +20,8 @@
             "dev.sebasmd.com"
         ],
         "local": [
-            "localhost"
+            "localhost",
+            "127.0.0.1"
         ],
         "production": [
             "sebasmd.com"
@@ -31,7 +32,8 @@
             "https://*.sebasmd.com"
         ],
         "local": [
-            "http://localhost:3000"
+            "http://localhost:3000",
+            "http://127.0.0.1:8000"
         ],
         "production": [
             "https://sebasmd.com"
