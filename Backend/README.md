@@ -61,6 +61,12 @@ Realizar una copia de la base de datos
 python manage.py dumpdata
 ```
 
+### ```inspectdb ```
+Copiar las tables de 
+```sh
+python manage.py dumpdata
+```
+
 >Nota:\
 En la configuración de correo utilizat EMAIL_USE_SSL = True con el puerto 465 y EMAIL_USE_TLS = True si el puerto es el 587
 
