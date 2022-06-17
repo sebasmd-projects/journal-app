@@ -44,7 +44,7 @@ THIRD_PARTY_APPS = (
 
 # Local Application definition
 LOCAL_APPS = (
-    
+    'apps.authentication',
 )
 
 # All Application definition joined
