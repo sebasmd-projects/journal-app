@@ -78,6 +78,17 @@ Journal APP es una proyecto pensado para manejar de manera sencilla los diarios 
     - Windows: `pip install psycopg2`
     - Linux: `pip install psycopg2-binary`
 
+Si la DB ya esta creada usar la configuración para conectarse a esa db +:
+```sh
+python manage.py inspectdb > modelos_a_clases.py
+```
+
+Con esto obtenemos las tablas de esa DB pasadas a clases de python usando los modelos de Django
+
+Uso:
+De un proyecto viejo se quiere cambiar el framework a Django.\
+Para evitar todo el proceso de crear modelo a modelo basado en clases se puede utilizar esto
+
 Algunos ejemplos para configurar la BD
 > **Sqlite:**\
 'ENGINE': 'django.db.backends.sqlite3',\
