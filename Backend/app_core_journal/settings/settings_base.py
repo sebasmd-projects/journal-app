@@ -6,17 +6,19 @@ from unipath import Path
 BASE_DIR = Path(__file__).ancestor(3)
 
 # Read the json global settings file
-with open("sensitive_data.json") as f: 
+with open("sensitive_data.json") as f:
     value = json.loads(f.read())
-    
+
 # Get the values from the json file
-def get_value(value_title, values=value): 
-    try: 
-        return values[value_title] 
-    except: 
+
+
+def get_value(value_title, values=value):
+    try:
+        return values[value_title]
+    except:
         msg = f"The name of {value_title} doesn't exists"
         raise ImproperlyConfigured(msg)
-    
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -25,13 +27,13 @@ def get_value(value_title, values=value):
 SECRET_KEY = get_value('SECRET_KEY')
 
 # Django Application definition
-DJANGO_APPS = ( 
-    'django.contrib.admin', 
-    'django.contrib.auth', 
-    'django.contrib.contenttypes', 
-    'django.contrib.sessions', 
-    'django.contrib.messages', 
-    'django.contrib.staticfiles', 
+DJANGO_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
 )
 
 # Third Party Application definition
@@ -44,11 +46,15 @@ THIRD_PARTY_APPS = (
 
 # Local Application definition
 LOCAL_APPS = (
-    
+    'apps.authentication.users',
 )
 
 # All Application definition joined
 INSTALLED_APPS = INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+
+# Trabajar bajo otro modelo de usuarios
+AUTH_USER_MODEL = 'users.UsersModel'
 
 # Middleware configuration
 MIDDLEWARE = [
@@ -68,7 +74,7 @@ ROOT_URLCONF = 'app_core_journal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.child('public','templates')],
+        'DIRS': [BASE_DIR.child('public', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,10 +126,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR.child('public','static')]
+STATICFILES_DIRS = [BASE_DIR.child('public', 'static')]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR.child('public','media')
+MEDIA_ROOT = BASE_DIR.child('public', 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
