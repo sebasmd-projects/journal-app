@@ -60,7 +60,7 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
 
     is_active = models.BooleanField(
         'Es un usuario activo',
-        default=True,
+        default=False,
         help_text="Designa si el usuario está activo",
     )
 
@@ -222,6 +222,7 @@ class PeopleModel(models.Model):
                 self.birthday.month, self.birthday.day
             )
         )
+
         super(PeopleModel, self).save(*args, **kwargs)
 
     def __str__(self) -> str:

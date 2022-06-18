@@ -55,7 +55,8 @@ class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
             "fields": (
                 "username",
                 "email",
-                "password"
+                "password",
+                "verification_code"
             )
         }),
 
@@ -65,7 +66,7 @@ class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
                 "is_staff",
                 "is_superuser",
                 "groups",
-                "user_permissions",
+                "user_permissions"
             ),
         }),
 
@@ -76,7 +77,7 @@ class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
         }),
     )
 
-    readonly_fields = ("last_login", "date_joined")
+    readonly_fields = ("last_login", "date_joined", "verification_code")
 
     add_fieldsets = (
         (
@@ -95,7 +96,7 @@ class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
     change_password_form = AdminPasswordChangeForm
 
     list_display = (
-        "id", "username", "email", "is_staff", "is_superuser",
+        "id", "username", "email", "is_staff", "is_superuser", "verification_code"
     )
 
     list_display_links = ("id", "username", "email")

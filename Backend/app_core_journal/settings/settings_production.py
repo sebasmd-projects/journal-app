@@ -24,11 +24,13 @@ DATABASES = {
     }
 }
 
-EMAIL_USE_SSL = get_value('EMAIL_USE_SSL')
-
-EMAIL_USE_TLS = get_value('EMAIL_USE_TLS')
-
 EMAIL_BACKEND = get_value('EMAIL_BACKEND')
+
+if bool(get_value('EMAIL_USE_SSL')) == True:
+    EMAIL_USE_SSL = bool(get_value('EMAIL_USE_SSL'))
+
+elif bool(get_value('EMAIL_USE_TLS')) == True:
+    EMAIL_USE_TLS = bool(get_value('EMAIL_USE_TLS'))
 
 EMAIL_HOST = get_value('EMAIL_HOST')
 
@@ -38,4 +40,4 @@ EMAIL_HOST_USER = get_value('EMAIL_HOST_USER')
 
 EMAIL_HOST_PASSWORD = get_value('EMAIL_HOST_PASSWORD')
 
-DEFAULT_FROM_EMAIL = get_value('DEFAULT_FROM_EMAIL')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

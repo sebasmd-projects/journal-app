@@ -1,0 +1,6 @@
+Código de verificación | {{time}}
+
+Tu código de verificación es:
+{{code}}
+
+Ingresa a {{user_url}}?code={{code}} para validar tu correo con el código de verificación {{code}}
