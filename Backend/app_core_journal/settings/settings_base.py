@@ -42,11 +42,15 @@ THIRD_PARTY_APPS = (
     'corsheaders',
     'adminsortable2',
     'import_export',
+    'ckeditor',
+    'ckeditor_uploader'
 )
 
 # Local Application definition
 LOCAL_APPS = (
     'apps.authentication.users',
+    'apps.authentication.login',
+    'apps.home'
 )
 
 # All Application definition joined
@@ -82,6 +86,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.context_processors.apps_processors',
             ],
         },
     },
@@ -135,3 +140,11 @@ MEDIA_ROOT = BASE_DIR.child('public', 'media')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CKEDITOR_UPLOAD_PATH = "media/uploads/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}

@@ -251,8 +251,6 @@ git push --tags
 git pull
 ```
 
-git commit -m "Se crea el proyecto de Django en la v4.0.5 y de React en la versión 18.1.0 | Se crean las aplicaciones de Django auth, home y journal | Se crea la estrucura de carpetas en Django | Se reestructura el settings.py | 
-
 [Django]: https://docs.djangoproject.com/en/4.0/
 [React]: https://github.com/facebook/react/blob/main/CHANGELOG.md#1810-april-26-2022
 [PostgreSQL]: https://www.postgresql.org/download/

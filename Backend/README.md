@@ -67,6 +67,14 @@ Copiar las tables de
 python manage.py dumpdata
 ```
 
+### ```migrate app_name zero```
+Para borrar una migración de una clase model.Model
+Borrar las migraciones de la carpeta migrations
+```sh
+python manage.py migrate app_name zero
+```
+
+
 >Nota:\
 En la configuración de correo utilizat EMAIL_USE_SSL = True con el puerto 465 y EMAIL_USE_TLS = True si el puerto es el 587
 

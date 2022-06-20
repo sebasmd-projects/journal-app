@@ -1,0 +1,17 @@
+
+<div class="login-box">
+    <div class="card card-outline card-primary">
+        <div class="card-body">
+            <p class="login-box-msg">Por favor ingresa el código de verificación que te llegó al correo</p>
+            <form method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('verfication_code_id').value = (new URL(window.location.href)).searchParams.get('code');
+</script>

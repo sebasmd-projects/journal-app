@@ -1,0 +1,29 @@
+{% load static %}
+{% block navbar %}
+    <!-- Start Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top sticky mx-auto" id="navbar">
+        <div class="container">
+            <a href="{% url 'home:inicio' %}" class="navbar-brand me-4">
+                <img src="{{ logo_light }}" class="logo-light" alt="" height="18" />
+                <img src="{{ logo_dark }}" class="logo-dark" alt="" height="18" />
+            </a>
+
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link sub-menu-item" href="{% url 'home:inicio' %}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link sub-menu-item" href="{% url 'home:documentation' %}">Documentación</a></li>
+                    <li class="nav-item"><a class="nav-link sub-menu-item" href="{% url 'authentication_register:user-register' %}">Registro</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-success nav-link sub-menu-item" href="{% url 'authentication_login:user-login' %}">Iniciar Sesión</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END NAVBAR -->
+{% endblock navbar %}

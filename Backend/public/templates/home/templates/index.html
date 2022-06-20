@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Inicio{% endblock title %}
+
+{% block content %}
+<!-- Start Title -->
+<section class="text-dark fw-light lh-base mt-5 hero position-relative overflow-hidden align-items-center" id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <h2>
+                    {% if start_description %}
+                        {% for desc in start_description %}
+                            {{ desc.description | safe }}
+                        {% endfor %}
+                    {% endif %}
+                </h2>
+            </div>
+        </div>
+            {% if content_index %}
+                {% for cont in content_index %}
+                    {{cont.description | safe}}
+                {% endfor %}
+            {% endif %}
+    </div>
+</section>
+<!-- End Title -->
+{% endblock content %}
+
+
+{% block extra_js %}
+<!-- Shuffle JS -->
+<script src="{% static 'js/shuffle.min.js'%}"></script>
+<script src="{% static 'js/gallery.init.js'%}"></script>
+{% endblock extra_js %}
