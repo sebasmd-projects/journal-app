@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth import authenticate
 from .functions import password_validation
 from ..users.models import UsersModel
 

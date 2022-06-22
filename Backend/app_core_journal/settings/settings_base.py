@@ -50,7 +50,8 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'apps.authentication.users',
     'apps.authentication.login',
-    'apps.home'
+    'apps.home',
+    'apps.journal.groups',
 )
 
 # All Application definition joined

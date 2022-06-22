@@ -3,12 +3,14 @@ from django.contrib import admin, messages
 from django.contrib.admin.options import IS_POPUP_VAR
 from django.contrib.admin.utils import unquote
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.forms import (
     AdminPasswordChangeForm,
     UserChangeForm,
     UserCreationForm,
 )
 from django.core.exceptions import PermissionDenied
+from django.core.mail import send_mail
 from django.db import router, transaction
 from django.http import Http404, HttpResponseRedirect
 from django.template.response import TemplateResponse
@@ -17,16 +19,22 @@ from django.utils.decorators import method_decorator
 from django.utils.html import escape
 from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
-from import_export.admin import ImportExportActionModelAdmin
+from django.template.loader import render_to_string
 
+from import_export.admin import ImportExportActionModelAdmin
+from import_export import resources
+
+from ..register.functions import generate_random_code
 
 from .models import UsersModel, PeopleModel
 
 
 csrf_protect_m = method_decorator(csrf_protect)
 sensitive_post_parameters_m = method_decorator(sensitive_post_parameters())
+
 
 class PeopleInline(admin.StackedInline):
     model = PeopleModel
@@ -40,12 +48,85 @@ class PeopleInline(admin.StackedInline):
         'gender',
         'is_active'
     ]
-    
+
+
+class UserAdminResource(resources.ModelResource):
+    save_points = []
+
+    def before_import_row(self, row, *args, **kwargs):
+        password = row['password']
+        row['password'] = make_password(password)
+
+    def after_save_instance(self, instance: UsersModel, using_transactions: bool, dry_run: bool):
+        TEMPLATE_CODE_VERIFICATION_EMAIL_TEXT = 'auth/templates/email/code_verification_email.txt'
+        TEMPLATE_CODE_VERIFICATION_EMAIL_HTML = 'auth/templates/email/code_verification_email.html'
+
+        send_date = timezone.now
+        user_id = instance.id
+        user_email = instance.email
+        user_url = f"{settings.BASE_URL}/auth/verificar-usuario/{user_id}/"
+        v_code = instance.verification_code
+
+        email_text = render_to_string(
+            TEMPLATE_CODE_VERIFICATION_EMAIL_TEXT,
+            {'code': v_code, 'time': send_date, 'user_url': user_url}
+        )
+
+        email_html = render_to_string(
+            TEMPLATE_CODE_VERIFICATION_EMAIL_HTML,
+            {'code': v_code, 'time': send_date, 'user_url': user_url}
+        )
+
+        if using_transactions and dry_run:
+            con = transaction.get_connection()
+            for sid in self.save_points:
+                con.run_on_commit = [
+                    (sids, func) for (sids, func) in con.run_on_commit if sid not in sids
+                ]
+            print("1", v_code, user_id)
+
+            UsersModel.objects.filter(
+                id=instance.id
+            ).update(
+                verification_code=v_code
+            )
+
+            send_mail(
+                subject=f'Verifica tu dirección de correo | Journal APP',
+                message=email_text,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[user_email],
+                html_message=email_html,
+            )
+
+        super().after_save_instance(instance, using_transactions, dry_run)
+
+    class Meta:
+        model = UsersModel
+        fields = (
+            "id",
+            "username",
+            "email",
+            "is_staff",
+            "password",
+            "verification_code"
+        )
+        export_order = (
+            "id",
+            "username",
+            "email",
+            "is_staff",
+            "password",
+            "verification_code"
+        )
+
 
 @admin.register(UsersModel)
 class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
+    resource_class = UserAdminResource
+
     inlines = [PeopleInline]
-    
+
     add_form_template = "admin/auth/user/add_form.html"
 
     change_user_password_template = None
@@ -96,7 +177,7 @@ class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
     change_password_form = AdminPasswordChangeForm
 
     list_display = (
-        "id", "username", "email", "is_staff", "is_superuser", "verification_code"
+        "id", "username", "email", "is_staff", "is_superuser", "is_active","verification_code"
     )
 
     list_display_links = ("id", "username", "email")
@@ -261,9 +342,27 @@ class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
         return super().response_add(request, obj, post_url_continue)
 
 
+class PeopleAdminResource(resources.ModelResource):
+    class Meta:
+        model = PeopleModel
+        fields = (
+            "id",
+            "user",
+            "first_name",
+            "last_name",
+            "phone",
+            "role",
+            "birthday",
+            "age",
+            "gender",
+            "is_active"
+        )
+
 
 @admin.register(PeopleModel)
-class PeopleAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):    
+class PeopleAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
+    resource_class = PeopleAdminResource
+
     raw_id_fields = (
         "user",
     )

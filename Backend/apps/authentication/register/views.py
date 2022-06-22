@@ -60,8 +60,7 @@ class UserRegisterView(FormView):
             subject=f'Verifica tu dirección de correo | Journal APP',
             message=email_text,
             from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=['copy_codes@sebasmd.com',
-                            form.cleaned_data['email']],
+            recipient_list=[form.cleaned_data['email']],
             html_message=email_html,
         )
 
