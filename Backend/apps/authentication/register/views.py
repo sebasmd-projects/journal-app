@@ -6,8 +6,6 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.utils import timezone
 
-from django.core.exceptions import ImproperlyConfigured
-
 #
 from .forms import (
     UserRegisterForm,
@@ -21,9 +19,9 @@ from ..users.models import UsersModel
 from .functions import generate_random_code
 
 TEMPLATE_REGISTER_PATH = 'auth/templates/register/register.html'
-TEMPLATE_CODE_VERIFICATION_EMAIL_TEXT = 'auth/templates/register/email/code_verification_email.txt'
-TEMPLATE_CODE_VERIFICATION_EMAIL_HTML = 'auth/templates/register/email/code_verification_email.html'
-TEMPLATE_CODE_VERIFICATION = 'auth/templates/register/validation-code/validation-code.html'
+TEMPLATE_CODE_VERIFICATION_EMAIL_TEXT = 'auth/templates/email/code_verification_email.txt'
+TEMPLATE_CODE_VERIFICATION_EMAIL_HTML = 'auth/templates/email/code_verification_email.html'
+TEMPLATE_CODE_VERIFICATION = 'auth/templates/validation-code/validation-code.html'
 
 
 class UserRegisterView(FormView):
@@ -46,7 +44,7 @@ class UserRegisterView(FormView):
 
         user_id = user.id
 
-        user_url = f"{settings.BASE_URL[0]}/auth/verificar-usuario/{user_id}/"
+        user_url = f"{settings.BASE_URL}/auth/verificar-usuario/{user_id}/"
 
         email_text = render_to_string(
             TEMPLATE_CODE_VERIFICATION_EMAIL_TEXT,

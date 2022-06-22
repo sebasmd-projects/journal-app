@@ -1,5 +1,23 @@
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Crear usuario</button>
-</form>
+{% extends 'base.html' %}
+
+{% block title %}Iniciar Sesión{% endblock title %}
+
+{% block content %}
+<section class="text-dark fw-light lh-base mt-5 hero position-relative overflow-hidden align-items-center"
+    id="iniciar-sesión">
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+
+            {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{request.GET.next}}">
+            {% endif %}
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-outline-success">Iniciar Sesión</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock content %}

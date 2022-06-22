@@ -13,5 +13,10 @@ urlpatterns = [
         'documentation', 
         views.DocumentationTemplateView.as_view(), 
         name='documentation',
+    ),
+    path(
+        'ver-requests',
+        views.SeeRequestsView.as_view(),
+        name='ver-requests',
     )
 ]

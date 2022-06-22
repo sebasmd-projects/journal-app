@@ -5,6 +5,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
 from django.views.generic import View
+
+
 from .forms import (
     UserLoginForm,
     UpdatePasswordForm,
@@ -14,7 +16,6 @@ from .forms import (
 class UserLoginView(FormView):
     template_name = "auth/templates/login/login.html"
     form_class = UserLoginForm
-    success_url = reverse_lazy('home:inicio')
 
     def form_valid(self, form):
         user = authenticate(
@@ -23,6 +24,14 @@ class UserLoginView(FormView):
         )
         login(self.request, user)
         return super(UserLoginView, self).form_valid(form)
+    
+    def get_success_url(self):
+        next_url = self.request.POST.get('next',None)
+        
+        if next_url:
+            return "%s" % (next_url)
+        else :
+            return reverse('home:inicio')
 
 
 class UserLogoutView(View):
@@ -36,7 +45,7 @@ class UserLogoutView(View):
 
 
 class UpdatePassword(LoginRequiredMixin, FormView):
-    template_name = "authentication/change-password/change-password.html"
+    template_name = "auth/templates/change-password/change-password.html"
     form_class = UpdatePasswordForm
     success_url = reverse_lazy('authentication_login:user-login')
     login_url = reverse_lazy('authentication_login:user-login')

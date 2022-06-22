@@ -1,37 +1,43 @@
 {% load static %}
 {% block footer %}
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-center">
-                        <a href="{% url 'home:inicio' %}" class="footer-logo d-inline-block py-4">
-                            <img src="{{ logo_light }}" class="mx-auto logo-dark" alt="" height="24" />
-                        </a>
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="text-center">
+                    <h6>
+                        {% if user.is_authenticated and full_name %}
+                        <span style="color:white;">Bienvenido! {{ full_name }} | {{ role }}</span>
+                        {% endif %}
+                    </h6>
+                    <a href="{% url 'home:inicio' %}" class="footer-logo d-inline-block py-4">
+                        <img src="{{ logo_light }}" class="mx-auto logo-dark" alt="" height="24" />
+                    </a>
 
-                        <ul class="list-inline social-circle mt-3">
-                            <li class="list-inline-item"><a href="javascript:void(0)"> <i class="mdi mdi-facebook"></i>
-                                </a></li>
-                            <li class="list-inline-item"><a href="javascript:void(0)"> <i class="mdi mdi-twitter"></i>
-                                </a></li>
-                            <li class="list-inline-item"><a href="javascript:void(0)"> <i
-                                        class="mdi mdi-google-plus"></i> </a></li>
-                            <li class="list-inline-item"><a href="javascript:void(0)"> <i class="mdi mdi-apple"></i>
-                                </a></li>
-                            <li class="list-inline-item"><a href="javascript:void(0)"> <i class="mdi mdi-instagram"></i>
-                                </a></li>
-                        </ul>
+                    <ul class="list-inline social-circle mt-3">
+                        <li class="list-inline-item"><a href="javascript:void(0)"> <i class="mdi mdi-facebook"></i>
+                            </a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)"> <i class="mdi mdi-twitter"></i>
+                            </a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)"> <i class="mdi mdi-google-plus"></i>
+                            </a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)"> <i class="mdi mdi-apple"></i>
+                            </a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)"> <i class="mdi mdi-instagram"></i>
+                            </a></li>
+                    </ul>
 
-                        <div class="text-white-50 pb-4">
-                            <script>document.write(new Date().getFullYear())</script> 
-                            &copy; <a class="text-white-50 text-decoration-underline" target="_blank" href="https://sebasmd.com/">Journal APP</a>
-                        </div>
-
+                    <div class="text-white-50 pb-4">
+                        <script>document.write(new Date().getFullYear())</script>
+                        &copy; <a class="text-white-50 text-decoration-underline" target="_blank"
+                            href="https://sebasmd.com/">Journal APP</a>
                     </div>
+
                 </div>
             </div>
-            <!-- end row -->
         </div>
-    </footer>
+        <!-- end row -->
+    </div>
+</footer>
 {% endblock footer %}

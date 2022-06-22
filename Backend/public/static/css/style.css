@@ -33,6 +33,7 @@ body {
 
 html {
   background-color: #edeeef;
+  min-height: 110%;
 }
 
 ::selection {

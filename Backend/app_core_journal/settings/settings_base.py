@@ -60,6 +60,7 @@ INSTALLED_APPS = INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # Trabajar bajo otro modelo de usuarios
 AUTH_USER_MODEL = 'users.UsersModel'
 
+
 # Middleware configuration
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -134,7 +135,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR.child('public', 'static')]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR.child('public', 'media')
+MEDIA_ROOT = 'public/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

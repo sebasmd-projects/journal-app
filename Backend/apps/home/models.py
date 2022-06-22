@@ -4,6 +4,18 @@ from ckeditor.fields import RichTextField
 
 # Create your models here.
 
+# reto crear un modelo para registrar meta tags
+# las meta tags estan conformadas de la siguiente manera:
+# type="name" content="content"
+"""
+<meta name="title" content="Journal App" />
+<meta name="description" content="Una breve pero cautivadora descripción de la app o de la página" />
+<meta name="keywords" content="python, django, journalapp" />
+<meta property="og.type" content="website" />
+<meta property="og:url" content="{{ url_base }}" />
+<meta property="og:title" content="Journal App" />
+<meta property="og:description" content="Una breve pero cautivadora descripción de la app o de la página" />
+""" 
 
 class LogoModel(models.Model):
     title = models.CharField(

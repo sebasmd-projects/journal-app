@@ -181,12 +181,12 @@ function defaultMode(e) {
     if (mode == "dark") {
         var x = document.getElementById("app-css");  
         var y = document.getElementById("mode");  
-        x.setAttribute('href', '../static/css/style-dark.css')
+        x.setAttribute('href', '/static/css/style-dark.css')
         y.setAttribute('data-class', mode)
     }else{
         var x = document.getElementById("app-css");
         var y = document.getElementById("mode");  
-        x.setAttribute('href', '../static/css/style.css')
+        x.setAttribute('href', '/static/css/style.css')
         y.setAttribute('data-class', mode)
     }    
 }
@@ -198,12 +198,12 @@ function changeMode(event) {
     var y = document.getElementById("mode");
 
     if (currentMode === "light") {
-        x.setAttribute('href', '../static/css/style-dark.css');
+        x.setAttribute('href', '/static/css/style-dark.css');
         y.setAttribute('data-class', 'dark');
         window.localStorage.removeItem('mode');
         window.localStorage.setItem("mode", "dark");
     } else {
-        x.setAttribute('href', '../static/css/style.css');
+        x.setAttribute('href', '/static/css/style.css');
         y.setAttribute('data-class', 'light');
         window.localStorage.removeItem('mode');
         window.localStorage.setItem("mode", "light");
@@ -223,7 +223,7 @@ function toggleSwitcher() {
 function setColor(theme) {
     window.localStorage.removeItem('color');
     window.localStorage.setItem("color", theme);
-    document.getElementById('color-opt').href = '../static/css/colors/' + theme + '.css';
+    document.getElementById('color-opt').href = '/static/css/colors/' + theme + '.css';
     toggleSwitcher(false);
 };
 
@@ -235,5 +235,5 @@ function defaultColor(e) {
     }else{
         color = window.localStorage.getItem('color');
     }
-    document.getElementById('color-opt').href = '../static/css/colors/' + color + '.css';
+    document.getElementById('color-opt').href = '/static/css/colors/' + color + '.css';
 }

@@ -2,15 +2,9 @@
     "FILE_NAME": "sensitive_data.json",
     "ENVIRONMENT": "local",
     "BASE_URL": {
-        "dev": [
-            "https://dev.sebasmd.com"
-        ],
-        "local": [
-            "http://localhost:8000"
-        ],
-        "production": [
-            "https://sebasmd.com"
-        ]
+        "dev": "https://dev.sebasmd.com",
+        "local": "http://localhost:8000",
+        "production": "https://sebasmd.com"
     },
     "SECRET_KEY": "django-journal-app-your-secret-key",
     "LANGUAGE_CODE": "es-co",
@@ -48,9 +42,9 @@
     "PORT": "5432",
     "EMAIL_USE_SSL": "True",
     "EMAIL_USE_TLS": "False",
-    "EMAIL_BACKEND" : "django_smtp_ssl.SSLEmailBackend",
-    "EMAIL_HOST" : "mail.sebasmd.com",
-    "EMAIL_PORT" : 465,
-    "EMAIL_HOST_USER" : "info@sebasmd.com",
-    "EMAIL_HOST_PASSWORD" : "+Lq5Jzm&gl"
+    "EMAIL_BACKEND": "django_smtp_ssl.SSLEmailBackend",
+    "EMAIL_HOST": "mail.sebasmd.com",
+    "EMAIL_PORT": 465,
+    "EMAIL_HOST_USER": "info@sebasmd.com",
+    "EMAIL_HOST_PASSWORD": "+Lq5Jzm&gl"
 }

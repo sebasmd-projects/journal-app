@@ -1,4 +1,6 @@
+{% extends 'base.html' %}
 
+{% block content %}
 <div class="login-box">
     <div class="card card-outline card-primary">
         <div class="card-body">
@@ -15,3 +17,4 @@
 <script>
     document.getElementById('verfication_code_id').value = (new URL(window.location.href)).searchParams.get('code');
 </script>
+{% endblock content %}

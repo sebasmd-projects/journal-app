@@ -1,5 +1,89 @@
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Crear usuario</button>
-</form>
+{% extends 'base.html' %}
+
+{% block title %}Registrar Nuevo Usuario{% endblock title %}
+
+{% block content %}
+<section class="text-dark fw-light lh-base mt-5 hero position-relative overflow-hidden align-items-center"
+    id="registro">
+    <div class="container">
+
+        <form method="post" class="row form-group">
+            {% csrf_token %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!--Username-->
+            {% if form.username.errors %}
+            <div class="alert alert-danger">
+                {{ form.username.errors }}
+            </div>
+            {% endif %}
+            <div class="input-group mb-3 col-md-4">
+                {{ form.username }}
+            </div>
+
+            <!--Email-->
+            {% if form.email.errors %}
+            <div class="alert alert-danger">
+                {{ form.email.errors }}
+            </div>
+            {% endif %}
+            <div class="input-group mb-3 col-md-4">
+                {{ form.email }}
+            </div>
+
+            <!--Password-->
+            {% if form.repeat_password.errors or form.password.errors %}
+            <div class="alert alert-danger">
+                {{ form.repeat_password.errors }}
+                {{ form.password.errors }}
+            </div>
+            {% endif %}
+            <div class="input-group mb-3 col-md-4">
+                {{ form.password }}
+            </div>
+
+            <!--Password Confirm-->
+            <div class="input-group mb-3 col-md-4">
+                {{ form.repeat_password }}
+            </div>
+
+            <!--Privacy-->
+            {% if form.privacy.errors %}
+            <div class="alert alert-danger">
+                {{ form.privacy.errors }}
+            </div>
+            {% endif %}
+            <div class="col-12">
+                <div class="icheck-primary">
+                    {{ form.privacy }}
+                    <label for="register_id_privacy" class="form-check-label">
+                        Acepto los términos y condiciones</a>
+                    </label>
+                </div>
+                <small><a href="{{ url_base }}" target="_blank">Ver términos y condiciones</a></small>
+            </div>
+
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-outline-success">Crear Usuario</button>
+            </div>
+        </form>
+
+    </div>
+</section>
+{% endblock content %}

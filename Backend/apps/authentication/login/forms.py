@@ -6,7 +6,7 @@ from . import models
 
 class UserLoginForm (forms.Form):
     username = forms.CharField(
-        label='Usuario',
+        label='Correo',
         required=True,
         widget=forms.TextInput(
             attrs={
