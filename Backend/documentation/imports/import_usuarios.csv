@@ -1,0 +1,3 @@
+id,username,email,is_staff,password,verification_code
+2,spam,spam@sebasmd.com,0,juan1999@,1234
+3,info,info@sebasmd.com,0,juan1999@,4321

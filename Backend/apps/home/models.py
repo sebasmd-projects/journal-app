@@ -136,3 +136,4 @@ class ContentIndexModel(models.Model):
         verbose_name_plural = 'Contenido principal'
         db_table = 'apps_home_content_index'
         ordering = ['order']
+        

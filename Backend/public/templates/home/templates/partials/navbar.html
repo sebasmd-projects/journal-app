@@ -1,0 +1,73 @@
+{% load static %}
+{% block navbar %}
+<!-- Start Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top sticky-top mx-auto" id="navbar">
+    <div class="container">
+        <a href="{% url 'home:inicio' %}" class="navbar-brand me-4">
+            <img src="{{ logo_light }}" class="logo-light" alt="" height="18" />
+            <img src="{{ logo_dark }}" class="logo-dark" alt="" height="18" />
+        </a>
+
+        <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse-1"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="mdi mdi-menu"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+            <ul class="nav navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link sub-menu-item" href="{% url 'home:inicio' %}">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link sub-menu-item"
+                        href="{% url 'home:documentation' %}">Documentación</a></li>
+
+                {% if user.is_superuser %}
+                <li class="nav-item"><a class="nav-link sub-menu-item" href="{% url 'admin:index' %}">Administrador</a>
+                </li>
+                <li class="nav-item dropdown parent-menu-item">
+                    <a class="nav-link menu-item dropdown-toggle" data-bs-toggle="dropdown"
+                        href="javascript:void(0)" role="button" aria-expanded="false">Links</a>
+                    <ul class="dropdown-menu border-0">
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item" href="{% url 'authentication_login:user-login' %}">Iniciar sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item" href="{% url 'authentication_login:user-logout' %}">Cerrar sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item" href="{% url 'authentication_login:user-update-password' %}">Cambiar contraseña</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item" href="{% url 'authentication_register:user-register' %}">Registrar usuario</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item" href="{% url 'authentication_register:user-verification' user.id %}?code=0000">Verficar usuario</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item" href="{% url 'home:inicio' %}">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item" href="{% url 'home:documentation' %}">Documentación</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item" href="{% url 'home:ver-requests' %}">Ver requests</a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a class="btn btn-outline-success nav-link sub-menu-item"
+                        href="{% url 'authentication_login:user-logout' %}">Cerrar Sesión</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link sub-menu-item"
+                        href="{% url 'authentication_register:user-register' %}">Registro</a></li>
+                <li class="nav-item"><a class="btn btn-outline-success nav-link sub-menu-item"
+                        href="{% url 'authentication_login:user-login' %}">Iniciar Sesión</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- END NAVBAR -->
+{% endblock navbar %}

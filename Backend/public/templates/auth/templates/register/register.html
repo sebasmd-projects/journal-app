@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'home/base.html' %}
 
 {% block title %}Registrar Nuevo Usuario{% endblock title %}
 
@@ -9,22 +9,6 @@
 
         <form method="post" class="row form-group">
             {% csrf_token %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <!--Username-->
             {% if form.username.errors %}
@@ -79,7 +63,7 @@
             </div>
 
 
-            <div class="d-grid gap-2">
+            <div class="d-grid gap-2 mt-3">
                 <button type="submit" class="btn btn-outline-success">Crear Usuario</button>
             </div>
         </form>

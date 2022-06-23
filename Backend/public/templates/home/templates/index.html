@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'home/base.html' %}
 
 {% load static %}
 
@@ -28,10 +28,3 @@
 </section>
 <!-- End Title -->
 {% endblock content %}
-
-
-{% block extra_js %}
-<!-- Shuffle JS -->
-<script src="{% static 'js/shuffle.min.js'%}"></script>
-<script src="{% static 'js/gallery.init.js'%}"></script>
-{% endblock extra_js %}

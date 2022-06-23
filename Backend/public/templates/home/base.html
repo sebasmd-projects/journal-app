@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="min-height: 110vh;">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,42 +11,45 @@
     <!-- Extra CSS -->
     {% block extra_css%}{% endblock extra_css%}
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="{{url_base}}/static/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="{{url_base}}/static/css/materialdesignicons.min.css" />
-    <link rel="stylesheet" type="text/css" href="{{url_base}}/static/css/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" type="text/css" href="{{url_base}}/static/css/wozia/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{url_base}}/static/css/wozia/materialdesignicons.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{url_base}}/static/css/wozia/pe-icon-7-stroke.css" />
     <!-- custom Css -->
     {% block css_wozia %}
-    <link rel="stylesheet" type="text/css" href="{{url_base}}/static/css/style.css" id="app-css" />
+    <link rel="stylesheet" type="text/css" href="{{url_base}}/static/css/wozia/style.css" id="app-css" />
     <!-- colors -->
-    <link rel="stylesheet" type="text/css" href="{{url_base}}/static/css/colors/amber.css" id="color-opt" />
+    <link rel="stylesheet" type="text/css" href="{{url_base}}/static/css/wozia/colors/amber.css" id="color-opt" />
     {% endblock css_wozia %}
 </head>
+
 <body data-bs-target=".navbar" data-bs-offset="110">
     <!-- light-dark mode button -->
-    <a href="javascript: void(0);" id="mode" data-class="light" class="text-white rounded-end mode-btn" onclick="changeMode(event)">
+    <a href="javascript: void(0);" id="mode" data-class="light" class="text-white rounded-end mode-btn"
+        onclick="changeMode(event)">
         <i class="bx-spin mode-light" data-feather="sun"></i>
         <i class="mode-dark mx-auto" data-feather="moon"></i>
     </a>
     {% block navbar %}
-        {% include "partials/navbar.html" %}
+    {% include "home/templates/partials/navbar.html" %}
     {% endblock navbar %}
 
     {% block content %}{% endblock content %}
 
     {% block footer %}
-        {% include "partials/footer.html" %}      
+    {% include "home/templates/partials/footer.html" %}
     {% endblock footer %}
-    
+
     <!-- Scripts -->
     {% block extra_java_script %}{% endblock extra_java_script %}
     <!-- Javascript -->
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="{{url_base}}/static/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{url_base}}/static/js/wozia/bootstrap.bundle.min.js"></script>
     <!-- feather icon -->
-    <script src="{{url_base}}/static/js/feather.js"></script>
+    <script src="{{url_base}}/static/js/wozia/feather.js"></script>
     <!-- app js -->
-    <script src="{{url_base}}/static/js/app.js"></script>
+    <script src="{{url_base}}/static/js/wozia/app.js"></script>
     <!-- custom js -->
     {% block extra_js %}{% endblock extra_js %}
 </body>
+
 </html>

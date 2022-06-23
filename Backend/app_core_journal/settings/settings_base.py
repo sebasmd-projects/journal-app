@@ -52,6 +52,7 @@ LOCAL_APPS = (
     'apps.authentication.login',
     'apps.home',
     'apps.journal.groups',
+    'apps.journal.general_app',
 )
 
 # All Application definition joined

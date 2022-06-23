@@ -1,7 +1,6 @@
 from django.shortcuts import redirect
-from django.urls import reverse
 from django.views.generic import TemplateView, View
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 
 from .models import StartDescriptionModel, ContentIndexModel
 

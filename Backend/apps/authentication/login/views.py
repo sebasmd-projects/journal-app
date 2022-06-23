@@ -31,7 +31,7 @@ class UserLoginView(FormView):
         if next_url:
             return "%s" % (next_url)
         else :
-            return reverse('home:inicio')
+            return reverse('journal_general:dashboard')
 
 
 class UserLogoutView(View):

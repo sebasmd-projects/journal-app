@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es-co">
+
+<head>
+
+    <!-- Meta Tags -->
+    {% block tags %}
+    {% include "journal/general_app/templates/partials/includes/metatags.html" %}
+    {% endblock tags %}
+
+    {% block metatags %}{% endblock metatags %}
+
+    <!-- HEADER -->
+    {% block header %}
+    {% include "journal/general_app/templates/partials/includes/header.html" %}
+    {% endblock header %}
+
+    <title>{% block title %}{% endblock title %} | Journal APP {% if user.is_authenticated and full_name %}| {{full_name }}{% endif %}</title>
+
+    <!-- JS -->
+    {% block headerJS %}{% endblock headerJS %}
+
+</head>
+
+<body class="nav-fixed">
+    {% block navbar %}
+    {% include "journal/general_app/templates/partials/navbar.html" %}
+    {% endblock navbar %}
+    <div id="layoutSidenav">
+        {% include "journal/general_app/templates/partials/sidenav.html" %}
+        <div id="layoutSidenav_content">
+            {% block content %}{% endblock content %}
+            {% include "journal/general_app/templates/partials/footer.html" %}
+        </div>
+    </div>
+    <!-- JS -->
+    {% include "journal/general_app/templates/partials/includes/scripts.html" %}
+</body>
+
+</html>
