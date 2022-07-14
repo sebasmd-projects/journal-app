@@ -1,8 +1,6 @@
 from django.db import models
 from django.utils import timezone
 
-# Create your models here.
-
 
 class CourseTopicsModel(models.Model):
     course_topic_name = models.CharField(
@@ -68,10 +66,9 @@ class CoursesModel(models.Model):
         max_length=20,
     )
 
-    topics = models.ForeignKey(
+    topics = models.ManyToManyField(
         CourseTopicsModel,
         verbose_name="Tema del curso",
-        on_delete=models.CASCADE,
     )
 
     course_description = models.TextField(

@@ -43,7 +43,8 @@ THIRD_PARTY_APPS = (
     'adminsortable2',
     'import_export',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'django_extensions', # Esta extensión es solo con el fin de poder ver todos los urls de las apps
 )
 
 # Local Application definition
@@ -53,6 +54,7 @@ LOCAL_APPS = (
     'apps.home',
     'apps.journal.groups',
     'apps.journal.general_app',
+    'apps.journal.daily_journal',
 )
 
 # All Application definition joined

@@ -2,20 +2,6 @@ from django.db import models
 from django.utils import timezone
 from ckeditor.fields import RichTextField
 
-# Create your models here.
-
-# reto crear un modelo para registrar meta tags
-# las meta tags estan conformadas de la siguiente manera:
-# type="name" content="content"
-"""
-<meta name="title" content="Journal App" />
-<meta name="description" content="Una breve pero cautivadora descripción de la app o de la página" />
-<meta name="keywords" content="python, django, journalapp" />
-<meta property="og.type" content="website" />
-<meta property="og:url" content="{{ url_base }}" />
-<meta property="og:title" content="Journal App" />
-<meta property="og:description" content="Una breve pero cautivadora descripción de la app o de la página" />
-""" 
 
 class LogoModel(models.Model):
     title = models.CharField(
@@ -136,4 +122,51 @@ class ContentIndexModel(models.Model):
         verbose_name_plural = 'Contenido principal'
         db_table = 'apps_home_content_index'
         ordering = ['order']
-        
+
+
+class NameAndLinkModel(models.Model):
+    name = models.CharField(
+        "Nombre de la red social",
+        max_length=100
+    )
+
+    link = models.URLField(
+        "Link de la red social",
+    )
+
+    icon = models.CharField(
+        "Icono que va dentro de la etiqueta <i class=''>",
+        max_length=100,
+    )
+
+    is_active = models.BooleanField(
+        'Esta activa?',
+        default=True,
+    )
+
+    created = models.DateTimeField(
+        'Fecha de cración',
+        default=timezone.now,
+        help_text="Fecha de creación",
+    )
+
+    updated = models.DateTimeField(
+        'Fecha de edición',
+        auto_now=True,
+        help_text="Fecha de edición",
+    )
+
+    order = models.PositiveIntegerField(
+        'Orden',
+        default=0,
+        help_text="Orden de visualización",
+    )
+
+    class Meta:
+        verbose_name = 'Nombres y link red social'
+        verbose_name_plural = 'Nombres y link red social'
+        db_table = 'apps_home_name_and_link'
+        ordering = ['order']
+
+    def __str__(self) -> str:
+        return self.name

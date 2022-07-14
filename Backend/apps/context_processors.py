@@ -1,28 +1,40 @@
-from .home.models import LogoModel
-from .authentication.users.models import PeopleModel
+from apps.home.models import (
+    LogoModel,
+    NameAndLinkModel
+)
+
+from apps.authentication.users.models import (
+    UsersModel,
+    PeopleModel
+)
+
+
 from django.conf import settings
 
 
 def apps_processors(request):
     ctx = {}
 
-    # Contextos que no dependen de la base de datos
     ctx['url_base'] = settings.BASE_URL
 
-    # Contextos que dependen de la base de datos
     logos = LogoModel.objects.all()
-    usuarios = PeopleModel.objects.filter(
-        user=request.user.id
-    )
+    people = PeopleModel.objects.all()
+    users = UsersModel.objects.all()
 
-    # Obtención de los datos de los contextos
-    for logo in logos:
-        ctx["logo_light"] = logo.logo_light.url
-        ctx["logo_dark"] = logo.logo_dark.url
-        ctx["favicon"] = logo.favicon.url
+    ctx["social_network"] = NameAndLinkModel.objects.all()
 
-    for usuario in usuarios:
-        ctx["full_name"] = usuario.full_name
-        ctx["role"] = usuario.get_role_display()
+    for u in users:
+        ctx['user_email'] = u.email
+        ctx['user_username'] = u.username
+
+    for l in logos:
+        ctx["logo_light"] = l.logo_light.url
+        ctx["logo_dark"] = l.logo_dark.url
+        ctx["favicon"] = l.favicon.url
+
+    for p in people:
+        ctx["full_name"] = p.full_name
+        ctx["role"] = p.get_role_display()
+        ctx["profile_picture"] = p.avatar
 
     return ctx

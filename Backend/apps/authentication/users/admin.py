@@ -27,27 +27,11 @@ from django.template.loader import render_to_string
 from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
 
-from ..register.functions import generate_random_code
-
 from .models import UsersModel, PeopleModel
 
 
 csrf_protect_m = method_decorator(csrf_protect)
 sensitive_post_parameters_m = method_decorator(sensitive_post_parameters())
-
-
-class PeopleInline(admin.StackedInline):
-    model = PeopleModel
-    extra = 0
-    fields = [
-        'first_name',
-        'last_name',
-        'role',
-        'phone',
-        'birthday',
-        'gender',
-        'is_active'
-    ]
 
 
 class UserAdminResource(resources.ModelResource):
@@ -125,19 +109,14 @@ class UserAdminResource(resources.ModelResource):
 class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
     resource_class = UserAdminResource
 
-    inlines = [PeopleInline]
-
-    add_form_template = "admin/auth/user/add_form.html"
-
-    change_user_password_template = None
-
     fieldsets = (
         ("Información de usuario", {
             "fields": (
                 "username",
                 "email",
                 "password",
-                "verification_code"
+                "verification_code",
+                "people"
             )
         }),
 
@@ -158,8 +137,6 @@ class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
         }),
     )
 
-    readonly_fields = ("last_login", "date_joined", "verification_code")
-
     add_fieldsets = (
         (
             None,
@@ -170,15 +147,11 @@ class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
         ),
     )
 
-    form = UserChangeForm
-
-    add_form = UserCreationForm
-
-    change_password_form = AdminPasswordChangeForm
-
     list_display = (
-        "id", "username", "email", "is_staff", "is_superuser", "is_active","verification_code"
+        "id", "username", "email", "people", "is_staff", "is_superuser", "is_active", "verification_code"
     )
+
+    readonly_fields = ("last_login", "date_joined", "verification_code")
 
     list_display_links = ("id", "username", "email")
 
@@ -186,12 +159,23 @@ class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
 
     search_fields = ("username", "email")
 
-    ordering = ("username",)
+    ordering = ("id",)
 
     filter_horizontal = (
         "groups",
         "user_permissions",
     )
+
+    # Django Base
+    add_form_template = "admin/auth/user/add_form.html"
+
+    change_user_password_template = None
+
+    form = UserChangeForm
+
+    add_form = UserCreationForm
+
+    change_password_form = AdminPasswordChangeForm
 
     def get_fieldsets(self, request, obj=None):
         if not obj:
@@ -347,13 +331,13 @@ class PeopleAdminResource(resources.ModelResource):
         model = PeopleModel
         fields = (
             "id",
-            "user",
             "first_name",
             "last_name",
             "phone",
             "role",
             "birthday",
             "age",
+            "groups",
             "gender",
             "is_active"
         )
@@ -363,13 +347,8 @@ class PeopleAdminResource(resources.ModelResource):
 class PeopleAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
     resource_class = PeopleAdminResource
 
-    raw_id_fields = (
-        "user",
-    )
-
     search_fields = (
         "id",
-        "user__username",
         "first_name",
         "last_name",
         "role",
@@ -377,13 +356,14 @@ class PeopleAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
     )
 
     fieldsets = (
-        ("Información de personal", {
+        ("Información personal", {
             "fields": (
-                "user",
+                "avatar",
                 "first_name",
                 "last_name",
                 "role",
                 "birthday",
+                "groups",
                 "gender",
             )
         }),
@@ -400,8 +380,24 @@ class PeopleAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
         }),
     )
 
-    list_display = ("id", 'user', 'full_name', 'role', 'age', 'is_active')
+    filter_horizontal = (
+        "groups",
+    )
+    
+    list_display = (
+        "id",
+        'full_name',
+        'role',
+        'age',
+        'is_active'
+    )
 
-    list_display_links = ('id', 'user', 'full_name')
+    list_display_links = (
+        'id',
+        'full_name'
+    )
 
-    readonly_fields = ("created", "updated")
+    readonly_fields = (
+        "created",
+        "updated"
+    )

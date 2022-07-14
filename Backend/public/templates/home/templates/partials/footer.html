@@ -15,18 +15,18 @@
                         <img src="{{ logo_light }}" class="mx-auto logo-dark" alt="" height="24" />
                     </a>
 
-                    <ul class="list-inline social-circle mt-3">
-                        <li class="list-inline-item"><a href="javascript:void(0)"> <i class="mdi mdi-facebook"></i>
-                            </a></li>
-                        <li class="list-inline-item"><a href="javascript:void(0)"> <i class="mdi mdi-twitter"></i>
-                            </a></li>
-                        <li class="list-inline-item"><a href="javascript:void(0)"> <i class="mdi mdi-google-plus"></i>
-                            </a></li>
-                        <li class="list-inline-item"><a href="javascript:void(0)"> <i class="mdi mdi-apple"></i>
-                            </a></li>
-                        <li class="list-inline-item"><a href="javascript:void(0)"> <i class="mdi mdi-instagram"></i>
-                            </a></li>
+                    <ul class="list-inline social-circle">
+                        {% for social in social_network %}
+                        {% if social.is_active %}
+                        <li class="list-inline-item">
+                            <a href="{{social.link}}">
+                                <i class="{{social.icon}}"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
                     </ul>
+
 
                     <div class="text-white-50 pb-4">
                         <script>document.write(new Date().getFullYear())</script>

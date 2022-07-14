@@ -677,8 +677,6 @@ h6 {
 }
 
 .navbar .navbar-nav .nav-item .nav-link.dropdown-toggle::after {
-  content: "\F0140" !important;
-  font-family: "Material Design Icons" !important;
   color: rgba(250, 250, 250, 0.75);
   font-size: 18px;
   border: none;

@@ -2,35 +2,41 @@ from django.contrib import admin
 from import_export.admin import ImportExportActionModelAdmin
 from adminsortable2.admin import SortableAdminMixin
 
-from .models import LogoModel, StartDescriptionModel, ContentIndexModel
+from .models import (
+    LogoModel,
+    StartDescriptionModel,
+    ContentIndexModel,
+    NameAndLinkModel,
+)
+
 
 @admin.register(LogoModel)
 class LogoAdmin(SortableAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (
-            "Logo modo luz",{
-                "fields":(
+            "Logo modo luz", {
+                "fields": (
                     "logo_light",
                 )
-            },   
+            },
         ),
         (
-            "Logo modo oscuro",{
-                "fields":(
+            "Logo modo oscuro", {
+                "fields": (
                     "logo_dark",
                 )
             },
         ),
         (
-            "Favicon",{
-                "fields":(
+            "Favicon", {
+                "fields": (
                     "favicon",
                 )
             }
         ),
         (
-            "Otros datos",{
-                "fields":(
+            "Otros datos", {
+                "fields": (
                     "is_active",
                     "created",
                     "updated",
@@ -38,12 +44,12 @@ class LogoAdmin(SortableAdminMixin, admin.ModelAdmin):
             }
         ),
     )
-    
+
     readonly_fields = (
         "created",
         "updated",
     )
-    
+
     list_display = (
         "order",
         "title",
@@ -51,13 +57,19 @@ class LogoAdmin(SortableAdminMixin, admin.ModelAdmin):
         "created",
         "updated",
     )
-    
+
     list_display_links = (
         "title",
         "id",
         "created",
         "updated",
     )
+
+    readonly_fields = (
+        "created",
+        "updated",
+    )
+
 
 @admin.register(StartDescriptionModel)
 class StartDescriptionAdmin(SortableAdminMixin, admin.ModelAdmin):
@@ -68,14 +80,20 @@ class StartDescriptionAdmin(SortableAdminMixin, admin.ModelAdmin):
         "created",
         "updated",
     )
-    
+
     list_display_links = (
         "id",
         "is_active",
         "created",
         "updated",
     )
-    
+
+    readonly_fields = (
+        "created",
+        "updated",
+    )
+
+
 @admin.register(ContentIndexModel)
 class ContentIndexAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_display = (
@@ -85,10 +103,42 @@ class ContentIndexAdmin(SortableAdminMixin, admin.ModelAdmin):
         "created",
         "updated",
     )
-    
+
     list_display_links = (
         "id",
         "is_active",
+        "created",
+        "updated",
+    )
+
+    readonly_fields = (
+        "created",
+        "updated",
+    )
+
+
+@admin.register(NameAndLinkModel)
+class NameAndLinkAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = (
+        "order",
+        "id",
+        "name",
+        "link",
+        "is_active",
+        "created",
+        "updated",
+    )
+
+    list_display_links = (
+        "id",
+        "name",
+        "link",
+        "is_active",
+        "created",
+        "updated",
+    )
+
+    readonly_fields = (
         "created",
         "updated",
     )

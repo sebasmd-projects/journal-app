@@ -25,23 +25,50 @@
                 <li class="nav-item"><a class="nav-link sub-menu-item" href="{% url 'admin:index' %}">Administrador</a>
                 </li>
                 <li class="nav-item dropdown parent-menu-item">
-                    <a class="nav-link menu-item dropdown-toggle" data-bs-toggle="dropdown"
-                        href="javascript:void(0)" role="button" aria-expanded="false">Links</a>
+                    <a class="nav-link menu-item dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0)"
+                        role="button" aria-expanded="false">Links <i class="fa-solid fa-caret-down"></i></a>
                     <ul class="dropdown-menu border-0">
                         <li class="nav-item">
-                            <a class="nav-link sub-menu-item" href="{% url 'authentication_login:user-login' %}">Iniciar sesión</a>
+                            <a class="nav-link sub-menu-item" href="{% url 'journal_general:calendar' %}">Calendario</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link sub-menu-item" href="{% url 'authentication_login:user-logout' %}">Cerrar sesión</a>
+                            <a class="nav-link sub-menu-item" href="{% url 'journal_general:components' %}">Componentes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link sub-menu-item" href="{% url 'authentication_login:user-update-password' %}">Cambiar contraseña</a>
+                            <a class="nav-link sub-menu-item" href="{% url 'journal_general:edit-avatar' user.id %}">Editar Avatar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link sub-menu-item" href="{% url 'authentication_register:user-register' %}">Registrar usuario</a>
+                            <a class="nav-link sub-menu-item" href="{% url 'journal_general:edit-user' user.id %}">Editar Usuario</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link sub-menu-item" href="{% url 'authentication_register:user-verification' user.id %}?code=0000">Verficar usuario</a>
+                            <a class="nav-link sub-menu-item" href="{% url 'journal_general:changelog' %}">Registro de Cambios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item" href="{% url 'journal_general:usage' %}">Usos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item" href="{% url 'journal:journal' %}">Diario de Campo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item" href="{% url 'authentication_login:user-login' %}">Iniciar
+                                sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item" href="{% url 'authentication_login:user-logout' %}">Cerrar
+                                sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item"
+                                href="{% url 'authentication_login:user-update-password' %}">Cambiar contraseña</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item"
+                                href="{% url 'authentication_register:user-register' %}">Registrar usuario</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link sub-menu-item"
+                                href="{% url 'authentication_register:user-verification' user.id %}?code=0000">Verficar
+                                usuario</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link sub-menu-item" href="{% url 'home:inicio' %}">Inicio</a>

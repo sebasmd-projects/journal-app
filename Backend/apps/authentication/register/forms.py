@@ -74,6 +74,7 @@ class UserRegisterForm(forms.ModelForm):
             'username',
             'email',
             'privacy',
+            'people',
         )
 
     def clean_repeat_password(self):

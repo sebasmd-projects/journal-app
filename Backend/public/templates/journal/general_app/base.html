@@ -15,8 +15,13 @@
     {% include "journal/general_app/templates/partials/includes/header.html" %}
     {% endblock header %}
 
-    <title>{% block title %}{% endblock title %} | Journal APP {% if user.is_authenticated and full_name %}| {{full_name }}{% endif %}</title>
 
+
+    <title>{% block title %}{% endblock title %} | Journal APP {% if user.is_authenticated and full_name %}|
+        {{full_name}}{% endif %}</title>
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{url_base}}{{favicon}}" />
     <!-- JS -->
     {% block headerJS %}{% endblock headerJS %}
 

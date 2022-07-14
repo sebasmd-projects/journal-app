@@ -24,5 +24,6 @@ urlpatterns = [
     path('', include('apps.home.urls')),
     path('auth/', include('apps.authentication.register.urls')),
     path('auth/', include('apps.authentication.login.urls')),
-    path('journal/', include('apps.journal.general_app.urls')),
+    path('journal-general/', include('apps.journal.general_app.urls')),
+    path('journal/', include('apps.journal.daily_journal.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
